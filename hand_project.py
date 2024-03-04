@@ -6,7 +6,7 @@ import pyautogui
 
 screen_width, screen_height = pyautogui.size()
 cursor_speed = 10
-# sensitivity = 2
+
 
 pTime = 0
 cTime = 0
@@ -30,11 +30,10 @@ while True:
 
         palm_x, palm_y = lmList[5][1], lmList[5][2]
 
-        # x_scaled = palm_x * sensitivity
-        # y_scaled = palm_y * sensitivity
-
-        target_x = int((palm_x / 450) * screen_width)
-        target_y = int((palm_y / 950) * screen_width)  
+        camera_width = cap.get(cv2.CAP_PROP_FRAME_WIDTH)  
+        camera_height = cap.get(cv2.CAP_PROP_FRAME_HEIGHT) 
+        target_x = int((palm_x / camera_width) * screen_width)
+        target_y = int((palm_y / camera_height) * screen_height)
 
         pyautogui.moveTo(target_x, target_y, duration=cursor_speed / 1000)
 
